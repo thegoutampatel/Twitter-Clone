@@ -1,9 +1,10 @@
-import { ObjectId } from "mongodb";
+
 import mongoose from "mongoose";
 
 const tweetSchema = new mongoose.Schema({
     content: {
-        type: String
+        type: String,
+        required: true
     },
     like: {
         type: Number
@@ -14,8 +15,10 @@ const tweetSchema = new mongoose.Schema({
     comment: {
         type: String
     }
+ 
+
 });
 
-const Tweet =  mongoose.model('Tweet', tweetSchema);
+const Tweet =  mongoose.model('tweet', tweetSchema);
 
 export default Tweet;
