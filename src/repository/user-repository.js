@@ -3,8 +3,19 @@ import CrudRepository from "./crud-repository.js";
 
 class UserRepository extends CrudRepository {
   constructor() {
-    super(User);
+    super(User)
   }
   
 
+  async findBy(data){
+    try {
+      const response = await User.findOne(data);
+      console.log(data);
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
+
+export default UserRepository;
