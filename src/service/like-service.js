@@ -28,7 +28,7 @@ class LikeService {
     if(exists){
       likeable.likes.pull(exists.id);
       await likeable.save();
-      await exists.remove();
+      this.likeRepository.destroy(exists.id);
       isAdded = false;
     }
     else {
@@ -41,9 +41,8 @@ class LikeService {
       await likeable.save();
       isAdded=true;
     }
-
-    return isAdded;
-f }
+    console.log(isAdded)
+    return isAdded; }
 }
 
 export default LikeService;

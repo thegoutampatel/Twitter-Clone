@@ -34,7 +34,9 @@ class UserService {
               message: "Incorrect Password"
             }
           }
-          console.log("User Successfully Signed in")
+          console.log("User Successfully Signed in");
+          const token = user.genJWT();
+          return token;
       } catch (error) {
           console.log("Error while SignUp", error);  
           throw error;

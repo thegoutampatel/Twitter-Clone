@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -50,6 +51,22 @@ userSchema.methods.comparePassword = function compare(password) {
         // Handle error
         console.error("Error comparing passwords:", error);
         return false; // Return false in case of error
+    }
+};
+
+
+userSchema.methods.genJWT = function generate() {
+    const user = this;
+    try {
+        return jwt.sign({
+            id:this._id,
+            email: this.email,
+        },'twitter_secret',{
+            expiresIn: '2h'
+        })
+    } catch (error) {
+        console.error("Error while Generate JWT:", error);
+        return false;
     }
 };
 
